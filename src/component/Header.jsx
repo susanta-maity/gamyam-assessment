@@ -2,8 +2,8 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
     return (
-        <header id="header" className="sticky top-0 z-50 shadow-md opacity-90">
-            <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+        <header id="header" className="sticky top-0 z-50 shadow-md opacity-90 w-full">
+            <div className="w-full mx-auto px-6 py-3 flex justify-between items-center">
 
                 {/* Logo / Title */}
                 <h2 className="text-xl text-gray-800 m-0">MY PRODUCTS</h2>

@@ -82,7 +82,7 @@ const ProductListView = () => {
             />
             <div className="p-6 productlist">
 
-                <div className="flex justify-between mb-2" /*className="flex justify-between sticky top-0 bg-white shadow-md p-4 z-20"*/>
+                {/* <div className="flex justify-between mb-2">
 
 
                     <div className="w-1/2">
@@ -104,7 +104,33 @@ const ProductListView = () => {
                         </button>
                     </div>
 
+                </div> */}
+
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+
+                    <h2 className="text-2xl font-semibold flex-shrink-0">
+                        Product List
+                    </h2>
+
+                    <div className="flex flex-grow max-w-md w-full gap-4">
+                        <input
+                            type="text"
+                            placeholder="Search products..."
+                            className="flex-grow border border-gray-400 p-2 rounded-md focus:outline-blue-500"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+
+                        <button
+                            className="bg-blue-600 text-white px-4 py-2 rounded whitespace-nowrap"
+                            onClick={handleOpenAddModal}
+                        >
+                            Add Product
+                        </button>
+                    </div>
+
                 </div>
+
 
                 <table className="w-full border border-gray-300 rounded-lg">
                     <thead className="bg-gray-100">
