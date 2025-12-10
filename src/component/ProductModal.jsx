@@ -7,6 +7,7 @@ import {
     CButton,
     CFormInput,
     CFormLabel,
+    CFormTextarea,
 } from "@coreui/react";
 
 const ProductModal = ({ visible, onClose, onSubmit, editingProduct }) => {
@@ -54,72 +55,79 @@ const ProductModal = ({ visible, onClose, onSubmit, editingProduct }) => {
 
     return (
         <CModal visible={visible} onClose={onClose} alignment="center">
-            
+
             <CModalHeader>
                 <h5>{editingProduct ? "Edit Product" : "Add Product"}</h5>
             </CModalHeader>
 
             <CModalBody>
-                <div className="mb-3">
-                    <CFormLabel>Name <span className="text-red-500">*</span></CFormLabel>
-                    <CFormInput
-                        type="text"
-                        value={productForm.name}
-                        className={errors.name ? "border border-red-500" : ""}
-                        onChange={(e) => setProductForm({ ...productForm, name: e.target.value })}
-                    />
-                    {errors.name && (
-                        <p className="text-red-500 text-sm">{errors.name}</p>
-                    )}
+
+
+                <div className="flex flex-wrap">
+                    <div className="mb-2 w-1/2 pr-2">
+                        <CFormLabel>Name <span className="text-red-500">*</span></CFormLabel>
+                        <CFormInput
+                            type="text"
+                            value={productForm.name}
+                            className={errors.name ? "border border-red-500" : ""}
+                            onChange={(e) => setProductForm({ ...productForm, name: e.target.value })}
+                        />
+                        {errors.name && (
+                            <p className="text-red-500 text-sm">{errors.name}</p>
+                        )}
+                    </div>
+                    <div className="mb-2 w-1/2 pl-2">
+                        <CFormLabel>Price <span className="text-red-500">*</span></CFormLabel>
+                        <CFormInput
+                            type="number"
+                            value={productForm.price}
+                            className={errors.price ? "border border-red-500" : ""}
+                            onChange={(e) => setProductForm({ ...productForm, price: e.target.value })}
+                        />
+                        {errors.price && (
+                            <p className="text-red-500 text-sm">{errors.price}</p>
+                        )}
+                    </div>
                 </div>
 
-                <div className="mb-3">
-                    <CFormLabel>Price <span className="text-red-500">*</span></CFormLabel>
-                    <CFormInput
-                        type="number"
-                        value={productForm.price}
-                        className={errors.price ? "border border-red-500" : ""}
-                        onChange={(e) => setProductForm({ ...productForm, price: e.target.value })}
-                    />
-                    {errors.price && (
-                        <p className="text-red-500 text-sm">{errors.price}</p>
-                    )}
+                <div className="flex flex-wrap">
+                    <div className="mb-2 w-1/2 pr-2">
+                        <CFormLabel>Category <span className="text-red-500">*</span></CFormLabel>
+                        <CFormInput
+                            type="text"
+                            value={productForm.category}
+                            className={errors.category ? "border border-red-500" : ""}
+                            onChange={(e) => setProductForm({ ...productForm, category: e.target.value })}
+                        />
+                        {errors.category && (
+                            <p className="text-red-500 text-sm">{errors.category}</p>
+                        )}
+                    </div>
+
+                    <div className="mb-2 w-1/2 pl-2">
+                        <CFormLabel>Stock</CFormLabel>
+                        <CFormInput
+                            type="number"
+                            value={productForm.stock}
+                            onChange={(e) => setProductForm({ ...productForm, stock: e.target.value })}
+                            min={0}
+                        />
+                    </div>
                 </div>
 
-                <div className="mb-3">
-                    <CFormLabel>Category <span className="text-red-500">*</span></CFormLabel>
-                    <CFormInput
-                        type="text"
-                        value={productForm.category}
-                        className={errors.category ? "border border-red-500" : ""}
-                        onChange={(e) => setProductForm({ ...productForm, category: e.target.value })}
-                    />
-                    {errors.category && (
-                        <p className="text-red-500 text-sm">{errors.category}</p>
-                    )}
-                </div>
-
-                <div className="mb-3">
-                    <CFormLabel>Stock</CFormLabel>
-                    <CFormInput
-                        type="number"
-                        value={productForm.stock}
-                        onChange={(e) => setProductForm({ ...productForm, stock: e.target.value })}
-                        min={0}
-                    />
-                </div>
-
-                <div className="mb-3">
+                <div className="mb-2">
                     <CFormLabel>Description</CFormLabel>
-                    <CFormInput
-                        type="text"
+                    <CFormTextarea
+                        className="h-20"
                         value={productForm.description}
-                        onChange={(e) => setProductForm({ ...productForm, description: e.target.value })}
+                        onChange={(e) =>
+                            setProductForm({ ...productForm, description: e.target.value })
+                        }
                     />
                 </div>
             </CModalBody>
 
-            <CModalFooter>
+            <CModalFooter className="modalFooter">
                 <CButton color="secondary" onClick={onClose}>
                     Cancel
                 </CButton>

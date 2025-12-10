@@ -24,6 +24,10 @@ const ProductListView = () => {
         return () => clearTimeout(timer);
     }, [search]);
 
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [debouncedSearch, productList]);
+
     const filteredProducts = productList
         .filter((p) => p.isActive)
         .filter((p) =>
@@ -76,23 +80,30 @@ const ProductListView = () => {
                 onSubmit={handleSubmit}
                 editingProduct={editProduct}
             />
-            <div className="p-6">
-                <button
-                    className="bg-blue-600 text-white px-4 py-2 rounded"
-                    onClick={handleOpenAddModal}
-                >
-                    Add Product
-                </button>
-                <div className="flex justify-between mb-2" /*className="flex justify-between sticky top-0 bg-white shadow-md p-4 z-20"*/>
-                    <h2 className="text-2xl font-semibold">Product List</h2>
+            <div className="p-6 productlist">
 
-                    <input
-                        type="text"
-                        placeholder="Search products..."
-                        className="w-3xl border border-gray-400 p-2 rounded-md focus:outline-blue-500"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
+                <div className="flex justify-between mb-2" /*className="flex justify-between sticky top-0 bg-white shadow-md p-4 z-20"*/>
+
+
+                    <div className="w-1/2">
+                        <h2 className="text-2xl font-semibold">Product List</h2>
+                    </div>
+                    <div className="w-1/3 flex justify-between gap-4">
+                        <input
+                            type="text"
+                            placeholder="Search products..."
+                            className="w-3xl border border-gray-400 p-2 rounded-md focus:outline-blue-500"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <button
+                            className="bg-blue-600 text-white px-4 py-2 rounded min-w-fit"
+                            onClick={handleOpenAddModal}
+                        >
+                            Add Product
+                        </button>
+                    </div>
+
                 </div>
 
                 <table className="w-full border border-gray-300 rounded-lg">
@@ -115,8 +126,8 @@ const ProductListView = () => {
                                 <td className="p-3 border">{item.stock}</td>
                                 <td className="p-3 border w-3">
                                     <div className="flex gap-3">
-                                        <button className="rounded bg-yellow-400 px-3 py-2" onClick={() => handleOpenEditModal(item)}>Edit</button>
-                                        <button className="rounded bg-red-500 px-3 py-2" onClick={() => handleDeleteProduct(item.id)}>Delete</button>
+                                        <button className="rounded bg-blue-600 px-3 py-2 text-white" onClick={() => handleOpenEditModal(item)}>Edit</button>
+                                        <button className="rounded bg-red-500 px-3 py-2 text-white" onClick={() => handleDeleteProduct(item.id)}>Delete</button>
                                     </div>
                                 </td>
                             </tr>

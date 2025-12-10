@@ -5,39 +5,17 @@ import { BrowserRouter, createBrowserRouter, Link, Navigate, Route, Routes } fro
 import { RouterProvider } from 'react-router-dom'
 import Header from './component/Header'
 import '@coreui/coreui/dist/css/coreui.min.css';
+import Home from './pages/Home'
 
 function App() {
-  // const appRouter = createBrowserRouter([
-  //   {
-  //     path: "*",
-  //     element: <Navigate to="/list" replace />
-  //     // element: <ProductListView />
-  //   },
-  //   {
-  //     path: "/list",
-  //     element: <ProductListView />
-  //   },
-  //   {
-  //     path: "/card",
-  //     element: <ProductCardView />
-  //   }
-  // ])
-
-  // return (
-  //   <div>
-  //     <Header />
-  //     <RouterProvider router={appRouter} />
-  //   </div>
-  // );
-
   return (
     <BrowserRouter>
       <Header />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/list" element={<ProductListView />} />
         <Route path="/card" element={<ProductCardView />} />
 
-        {/* Default */}
         <Route path="*" element={<ProductListView />} />
       </Routes>
     </BrowserRouter>
